@@ -6,10 +6,13 @@ interface BasicArhyth {
     void mult(Double fNum, Double sNum);
     void div(Double fNum, Double sNum);
 }
+
 interface AdvancedArhyth {
     void exp(Double fNum, Double sNum);
     void mod(Double fNum, Double sNum);
+    void sqrt(Double fNum);
 }
+
 interface Trig {
     void sin(double fNum);
     void tan(double fNum);
@@ -19,37 +22,31 @@ interface Trig {
     void tanh(double fNum);
     void cosh(double fNum);
 }
+
 class Calculator implements BasicArhyth, AdvancedArhyth, Trig {
     Scanner scanner = new Scanner(System.in);
 
     @Override
-        public void add(Double fNum, Double sNum) {System.out.println(fNum + sNum);}
-    @Override
-        public void sub(Double fNum, Double sNum) {System.out.println(fNum - sNum);}
-    @Override
-        public void mult(Double fNum, Double sNum) {System.out.println(fNum * sNum);}
-    @Override
+        public void add(Double fNum, Double sNum) {System.out.println(fNum + sNum);}@Override
+        public void sub(Double fNum, Double sNum) {System.out.println(fNum - sNum);}@Override
+        public void mult(Double fNum, Double sNum) {System.out.println(fNum * sNum);}@Override
         public void div(Double fNum, Double sNum) {System.out.println(fNum / sNum);}
 
     //*---------------------------------------------------------------------*\\
     @Override
-        public void exp(Double fNum, Double sNum) {System.out.println(Math.pow(fNum, sNum));}
-    @Override
-        public void mod(Double fNum, Double sNum) {System.out.println(fNum % sNum);}
+        public void exp(Double fNum, Double sNum) {System.out.println(Math.pow(fNum, sNum));}@Override
+        public void mod(Double fNum, Double sNum) {System.out.println(fNum % sNum);}@Override
+        public void sqrt(Double fNum) {System.out.println(Math.sqrt(fNum));}
 
     //*---------------------------------------------------------------------*\\
     @Override
-        public void sin(double fNum) {System.out.println(Math.sin(fNum));}
-    @Override
-        public void tan(double fNum) {System.out.println(Math.tan(fNum));}
-    @Override
+        public void sin(double fNum) {System.out.println(Math.sin(fNum));}@Override
+        public void tan(double fNum) {System.out.println(Math.tan(fNum));}@Override
         public void cos(double fNum) {System.out.println(Math.cos(fNum));}
     
     @Override
-        public void sinh(double fNum) {System.out.println(Math.sinh(fNum));}
-    @Override
-        public void tanh(double fNum) {System.out.println(Math.tanh(fNum));}
-    @Override
+        public void sinh(double fNum) {System.out.println(Math.sinh(fNum));}@Override
+        public void tanh(double fNum) {System.out.println(Math.tanh(fNum));}@Override
         public void cosh(double fNum) {System.out.println(Math.cosh(fNum));}
 
     public void calculate() {
@@ -81,6 +78,7 @@ class Calculator implements BasicArhyth, AdvancedArhyth, Trig {
                 default -> {System.out.println("ERROR: Unrecognized operation. Please try again.");}
             }
         } else if(
+            op.equals("sqrt") ||
             op.equals("sin") || 
             op.equals("sinh") || 
             op.equals("tan") || 
@@ -92,11 +90,14 @@ class Calculator implements BasicArhyth, AdvancedArhyth, Trig {
             double num = scanner.nextDouble();
 
             switch(op) {
+                case "sqrt" -> {sqrt(num);}
+
                 case "sin" -> {sin(num);}
                 case "sinh" -> {sinh(num);}
+
                 case "tan" -> {tan(num);}
-                
                 case "tanh" -> {tanh(num);}
+
                 case "cos" -> {cos(num);}
                 case "cosh" -> {cosh(num);}
                 default -> {System.out.println("ERROR: Unrecognized operation. Please try again.");}
